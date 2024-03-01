@@ -99,5 +99,11 @@ document.addEventListener('keydown', function(event) {
     }
 });
 
+document.querySelectorAll('input[type="button"]').forEach(button => {
+    button.addEventListener('click', () => {
+        document.querySelector('.error').style.display = 'none';
+    });
+});
+
 </script>
 </html>
