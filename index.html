@@ -14,6 +14,7 @@
             <form>
                 <div class="display"> 
                     <input type="text" name="display" onkeypress="return isNumberOrSymbol(event)" onkeydown="if(event.keyCode==13) calculate()">
+                    <div class="error"> please enter a valid equation!!</div>
 
 
 
@@ -68,8 +69,19 @@ function isNumberOrSymbol(event){
 }
 
 function calculate() {
+    try{ 
     const displayValue = document.getElementsByName('display')[0].value;
-    document.getElementsByName('display')[0].value = eval(displayValue);
+    const result = eval(displayValue);
+        if (!isNaN(result)) {
+            document.getElementsByName('display')[0].value = result;
+        } else {
+            document.querySelector('.error').style.display = 'block';
+            document.getElementsByName('display')[0].value = '';
+        }
+   }catch(error) {
+            document.querySelector('.error').style.display = 'block';
+            document.getElementsByName('display')[0].value = '';
+        }
 } 
 
 document.addEventListener('keydown', function(event) {
@@ -80,6 +92,7 @@ document.addEventListener('keydown', function(event) {
             document.getElementsByName('display')[0].value = currentValue.slice(0, -1);
         } else if (keyPressed !== 'Enter') {
             document.getElementsByName('display')[0].value += keyPressed;
+            document.querySelector('.error').style.display = 'none';
         }
     } else if (keyPressed === 'Enter') {
         calculate();

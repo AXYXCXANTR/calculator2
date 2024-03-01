@@ -44,3 +44,11 @@ form input.equal{
     width: 145px;
 }
 
+.error {
+    position: absolute;
+    color: white;
+    margin-top: 35px;
+    margin-right: 60px;
+    font-weight: bold;
+    display: none;
+}
