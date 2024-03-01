@@ -13,13 +13,13 @@
         <div class="calculator">
             <form>
                 <div class="display"> 
-                    <input type="text" name="display">
+                    <input type="text" name="display" onkeypress="return isNumberOrSymbol(event)">
                 </div>
                 <div>
                     <input type="button" value="AC" onclick="display.value = `` ">
-                    <input type="button" value="DE" onclick="display.value = display.value.toString().slice(0,-1) ">
-                    <input type="button" value="." onclick="display.value += `.` ">
-                    <input type="button" value="/" onclick="display.value += `/` ">
+                    <input type="button" value="DE" onclick="display.value = display.value.toString().slice(0,-1)" >
+                    <input type="button" value="." onclick="display.value += `.` " >
+                    <input type="button" value="/" onclick="display.value += `/` " >
                 </div>
                 <div>
                     <input type="button" value="7" onclick="display.value += `7` ">
@@ -42,7 +42,7 @@
                 <div>
                     <input type="button" value="00" onclick="display.value += `00` ">
                     <input type="button" value="0" onclick="display.value += `0` ">
-                    <input type="button" value="=" class="equal">
+                    <input type="button" value="=" onclick="display.value = eval(display.value)" class="equal">
                     
                 </div>
             </form>
@@ -54,5 +54,13 @@
 
 </body>
 
+<script>
+    function isNumberOrSymbol(event){
+        const allowedChars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+', '-', '*', '/', '.'];
+        const keyPressed = event.key;
+        return allowedChars.includes(keyPressed);
+        }
+    
 
+</script>
 </html>
